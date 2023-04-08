@@ -18,6 +18,13 @@ class Department:
     def dept_name(self) -> str:
         return self.__dept_name
     
+    def get_csv(self) -> list[str]:
+        csv_str: list[str] = [
+            self.__dept_name,
+        ]
+
+        return csv_str
+    
     #Get the list of all employees
     def get_all_employees(self) -> list[Employee]:
         return self.__employees
