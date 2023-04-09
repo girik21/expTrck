@@ -3,12 +3,15 @@ sys.path.append('./')
 from components.employee import Employee
 from components.expense import Expense
 from components.department import Department
+from components.departmentManager import DepartmentManager
 
 class ExpenseTracker:
     def __init__(self) -> None:
-        self.__department = Department("Computer Science")
+        self.__department = Department("CSE")
+        self.__departmentManager = DepartmentManager()
     
     def show_menu(self):
+        print()
         print("Menu")
         print("1. Add an Employee")
         print("2. Print list of Employees")
@@ -19,6 +22,10 @@ class ExpenseTracker:
         print("7. Show all Expenses")
         print("8. Remove Expenses")
         print("9. Edit Expense")
+        print("10. Show all Department")
+        print("11. Add Department")
+        print("12. Update Department")
+        print("13. Delete Department")
 
         print("0. Exit")
     
@@ -126,13 +133,40 @@ class ExpenseTracker:
             self.__department.update_expense(update_expense)
             print(f"{update_expense} expense Updated!")
         
+        elif choice == 10:
+            print("Show all Departments: ")
+            for department in self.__departmentManager.get_all_departments():
+                print("\n")
+                print(department)
+            print()
+        
+        elif choice == 11:
+            print("Add a Department: ")
+            dept_name = input("Enter new department: ")
+            self.__departmentManager.add_department(dept_name)
+            print("Department Added")
+            print()
+        
+        elif choice == 12:
+            print("Update a Department: ")
+            old_name = input("Enter existing department: ")
+            updated_name = input("Enter the new department: ")
+            self.__departmentManager.update_department(old_name, updated_name)
+            print("Given department is successfully updated!")
+            print()
+        
+        elif choice == 13:
+            print("Delete Department")
+            delete = input("Enter the dept to delete: ")
+            self.__departmentManager.remove_department(delete)
+            print("The Department has been deleted")
+  
         elif choice == 0:
-            print("Thank you for using our APP!")
+            print("Thank you for using my app CFO!")
             return choice
         else:
             print("Invalid option selected! Select again!")
             
-
 def main():
     app = ExpenseTracker()
     while True:
