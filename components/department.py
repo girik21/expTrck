@@ -6,8 +6,9 @@ from database.employeeDB import EmployeeRepository
 from database.expenseDB import ExpenseRepository
 
 class Department:
-    def __init__(self, dept_name: str) -> None:
+    def __init__(self, dept_name: str, dept_budget: float) -> None:
         self.__dept_name = dept_name
+        self.__dept_budget = dept_budget
         self.__employees_db = EmployeeRepository()
         self.__expense_db = ExpenseRepository()
         self.__employees: list[Employee] = self.__employees_db.read_employees()
@@ -17,12 +18,17 @@ class Department:
     def dept_name(self) -> str:
         return self.__dept_name
     
+    @property
+    def dept_budget(self) -> float:
+        return self.__dept_budget
+    
     def __str__(self):
-        return f"Department Name: {self.dept_name}"
+        return f"Department-Name: {self.dept_name}\nDepartment-Budget: {self.__dept_budget}"
     
     def get_csv(self) -> list[str]:
         csv_str: list[str] = [
-            self.__dept_name
+            self.__dept_name,
+            self.__dept_budget
         ]
 
         return csv_str
@@ -102,7 +108,12 @@ class Department:
     #Get the list of all expenses
     def get_all_expenses(self) -> list[Expense]:
         return self.__expenses
-
+    
+    def get_all_expense_category(self) -> list[Expense]:
+        expenses: list[Expense] = self.__expense_db.read_expenses()
+        categories = set(expense.category for expense in expenses)
+        return list(categories)
+    
     # Add new expense
     def add_expense(self, expense: Expense):
         self.__expenses.append(expense)
