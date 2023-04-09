@@ -14,23 +14,37 @@ class ExpenseTracker:
         print()
         print("******  Welcome to ExpenseTracker  ******")
         print()
+        print("****** Employee options ******")
         print("1.  Add an Employee")
         print("2.  Print list of Employees")
         print("3.  Search Employees by EmpId")
         print("4.  Remove Employee")
         print("5.  Edit Employee")
+        print()
+        print("****** Expense options ******")
         print("6.  Add Expense")
         print("7.  Show all Expenses")
         print("8.  Show all Expense Categories")
         print("9.  Remove Expenses")
         print("10. Edit Expense")
+        print()
+        print("****** Department options ******")
         print("11. Show all Department and Department Budget")
         print("12. Add Department Name and Department Budget")
         print("13. Update Department Name and Department Budget")
         print("14. Delete Department Name and Department Budget")
+        print()
+        print("****** Report options ******")
         print("15. Get Employee with the Highest Expense")
         print("16. Get Department with Highest Budget")
         print("17. Get Expense Report by Month")
+        print()
+        print("****** Histograms ******")
+        print("18. Employee Histogram using MatplotLib")
+        print("19. Department Histogram using MatplotLib")
+        print("20. Expense Histogram using MatplotLib")
+        
+        
 
         print("0.  Exit")
     
@@ -70,13 +84,12 @@ class ExpenseTracker:
             print()
         
         elif choice == 4:
-            #Not working
             print("Employee information to remove:")
-            emp_id = int(input("Enter new Employee ID: "))
-            first_name = input("Enter new First name: ")
-            last_name = input("Enter new Last name: ")
-            department_name = input("Enter new Department Name: ")
-            rank = input("Enter new rank: ")
+            emp_id = int(input("Enter existing Employee ID: "))
+            first_name = input("Enter existing First name: ")
+            last_name = input("Enter existing Last name: ")
+            department_name = input("Enter existing Department Name: ")
+            rank = input("Enter existing rank: ")
 
             employee_delete = Employee(emp_id, first_name, last_name, department_name, rank)
             self.__department.remove_employee(employee_delete)
@@ -183,6 +196,15 @@ class ExpenseTracker:
         elif choice == 17:
             print("Expense Reports are: ")
             print(self.__department.generate_expense_report_by_month())
+        
+        elif choice == 18:
+            print(self.__department.generate_employee_histogram())
+        
+        elif choice == 19:
+            print(self.__departmentManager.generate_department_histogram())
+        
+        elif choice == 20:
+            print(self.__department.generate_expense_histogram())
   
         elif choice == 0:
             print("Thank you for using my app CFO!")

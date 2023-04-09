@@ -1,9 +1,12 @@
 import sys
 sys.path.append('./')
+from typing import List
 from components.employee import Employee
 from components.expense import Expense
 from database.employeeDB import EmployeeRepository
 from database.expenseDB import ExpenseRepository
+import matplotlib.pyplot as plt
+
 
 class Department:
     def __init__(self, dept_name: str, dept_budget: float) -> None:
@@ -127,7 +130,6 @@ class Department:
             return None
         return max(expenses, key=lambda expense: expense.amount)
         
-    
     def get_all_expense_category(self) -> list[Expense]:
         expenses: list[Expense] = self.__expense_db.read_expenses()
         categories = set(expense.category for expense in expenses)
@@ -174,15 +176,29 @@ class Department:
         else:
             print(f"Could find the expense!")
     
-    # def per_change(self, expense: Expense) -> None:
-    # if expense in self.__expenses:
-    #     print("---Let's update the expense---")
-    #     percentage = int(input("Enter the percentage change: "))
-    #     expense.amount *= (1 + percentage / 100)
-    #     self.__expense_db.write_expenses(self.__expenses)
-    #     print(f"Expense named {expense} was updated!")
-    # else:
-    #     print(f"Could not find the expense!")
+    def generate_expense_histogram(self) -> List[Expense]:
+        expenses: List[Expense] = self.__expense_db.read_expenses()
+        expense_amounts = [expense.amount for expense in expenses]
+        num_bins = 10
+        plt.hist(expense_amounts, bins=num_bins, edgecolor='black')
+        plt.xlabel('Expense Amount')
+        plt.ylabel('Frequency')
+        plt.title('Employee Expense Histogram')
+        plt.show()
+        return expenses
+    
+    def generate_employee_histogram(self) -> List[Employee]:
+        employees: List[Employee] = self.__employees_db.read_employees()
+        all_depts = [employee.department_name for employee in employees]
+        all_ranks = [employee.rank for employee in employees]
+        num_bins = 10
+        plt.hist(all_depts, bins=num_bins, edgecolor='black')
+        plt.hist(all_ranks, bins=num_bins, edgecolor='red')
+        plt.xlabel('Blue(Department) and Orange(Rank)')
+        plt.ylabel('Number')
+        plt.title('Employee Department and Rank Histogram')
+        plt.show()
+        return employees
 
     @property
     def __iter__(self):
@@ -197,3 +213,4 @@ class Department:
             expense = self.__expenses[self.__iter_index]
             self.__iter_index += 1
             return expense
+
