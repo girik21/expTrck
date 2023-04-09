@@ -7,27 +7,29 @@ from components.departmentManager import DepartmentManager
 
 class ExpenseTracker:
     def __init__(self) -> None:
-        self.__department = Department("CSE")
+        self.__department = Department("CSE", 1000)
         self.__departmentManager = DepartmentManager()
     
     def show_menu(self):
         print()
-        print("Menu")
-        print("1. Add an Employee")
-        print("2. Print list of Employees")
-        print("3. Search Employees by EmpId")
-        print("4. Remove Employee")
-        print("5. Edit Employee")
-        print("6. Add Expense")
-        print("7. Show all Expenses")
-        print("8. Remove Expenses")
-        print("9. Edit Expense")
-        print("10. Show all Department")
-        print("11. Add Department")
-        print("12. Update Department")
-        print("13. Delete Department")
+        print("******  Welcome to ExpenseTracker  ******")
+        print()
+        print("1.  Add an Employee")
+        print("2.  Print list of Employees")
+        print("3.  Search Employees by EmpId")
+        print("4.  Remove Employee")
+        print("5.  Edit Employee")
+        print("6.  Add Expense")
+        print("7.  Show all Expenses")
+        print("8.  Show all Expense Categories")
+        print("9.  Remove Expenses")
+        print("10. Edit Expense")
+        print("11. Show all Department and Department Budget")
+        print("12. Add Department Name and Department Budget")
+        print("13. Update Department Name and Department Budget")
+        print("14. Delete Department Name and Department Budget")
 
-        print("0. Exit")
+        print("0.  Exit")
     
     #Get user input
     def get_user_choice(self) -> int:
@@ -110,6 +112,10 @@ class ExpenseTracker:
             print()
         
         elif choice == 8:
+            print("Show all Expense Categories: ")
+            print(self.__department.get_all_expense_category())
+        
+        elif choice == 9:
             print("Delete expense: ")
             emp_id = int(input("Enter existing Employee ID: "))
             date = input("Enter date (YYYY/MM/DD): ")
@@ -121,7 +127,7 @@ class ExpenseTracker:
             self.__department.remove_expense(delete_expense)
             print(f"{delete_expense} expense deleted")
         
-        elif choice == 9:
+        elif choice == 10:
             print("Expense to be updated")
             emp_id = int(input("Enter  Employee ID: "))
             date = input("Enter date (YYYY/MM/DD): ")
@@ -133,33 +139,34 @@ class ExpenseTracker:
             self.__department.update_expense(update_expense)
             print(f"{update_expense} expense Updated!")
         
-        elif choice == 10:
+        elif choice == 11:
             print("Show all Departments: ")
             for department in self.__departmentManager.get_all_departments():
                 print("\n")
                 print(department)
             print()
         
-        elif choice == 11:
-            print("Add a Department: ")
-            dept_name = input("Enter new department: ")
-            self.__departmentManager.add_department(dept_name)
-            print("Department Added")
-            print()
-        
         elif choice == 12:
-            print("Update a Department: ")
-            old_name = input("Enter existing department: ")
-            updated_name = input("Enter the new department: ")
-            self.__departmentManager.update_department(old_name, updated_name)
-            print("Given department is successfully updated!")
+            print("Add a Department: ")
+            print()
+            dept_name = input("Enter new department: ")
+            dept_budget = int(input("Enter department budget: "))
+            self.__departmentManager.add_department(dept_name, dept_budget)
             print()
         
         elif choice == 13:
+            print("Update a Department: ")
+            old_name = input("Enter existing department: ")
+            updated_name = input("Enter the new department: ")
+            old_budget = int(input("Enter old budget: "))
+            new_budget = int(input("Enter new budget: "))
+            self.__departmentManager.update_department(old_name, updated_name, old_budget, new_budget )
+            print()
+        
+        elif choice == 14:
             print("Delete Department")
             delete = input("Enter the dept to delete: ")
             self.__departmentManager.remove_department(delete)
-            print("The Department has been deleted")
   
         elif choice == 0:
             print("Thank you for using my app CFO!")

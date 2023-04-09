@@ -14,10 +14,16 @@ class DepartmentRepository:
         with open(self.__filename, newline="") as file:
             reader = csv.reader(file)
         
+            # for row in reader:
+            #     department = Department(row[0], int(row[1]))
+            #     departments.append(department)
+            
             for row in reader:
-                department = Department(row[0])
+                if len(row) < 2:
+                   continue
+                department = Department(row[0], int(row[1]))
                 departments.append(department)
-        
+
         return departments
     
     #write department data
@@ -36,7 +42,7 @@ def main():
     for department in departments:
         print(department)
         
-    department = Department("one")
+    department = Department("one", 1000)
     departments.append(department)
         
     # test adding new department
