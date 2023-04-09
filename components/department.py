@@ -42,7 +42,7 @@ class Department:
     #Get the list of all employees
     def get_all_employees(self) -> list[Employee]:
         return self.__employees
-    
+
     #Add employee to the department
     def add_employee(self, employee: Employee):
         self.__employees.append(employee)
@@ -108,12 +108,31 @@ class Department:
     #Get the list of all expenses
     def get_all_expenses(self) -> list[Expense]:
         return self.__expenses
+
+    def generate_expense_report_by_month(self) -> dict:
+        expenses = self.__expense_db.read_expenses()
+        report = {}
+
+        for expense in expenses:
+            expense_month = expense.expense_date.strftime("%B %Y")
+            if expense_month not in report:
+               report[expense_month] = 0
+            report[expense_month] += expense.amount
+
+        return report
+        
+    def get_employee_with_most_expense(self) -> Expense:
+        expenses: list[Expense] = self.__expense_db.read_expenses()
+        if not expenses:
+            return None
+        return max(expenses, key=lambda expense: expense.amount)
+        
     
     def get_all_expense_category(self) -> list[Expense]:
         expenses: list[Expense] = self.__expense_db.read_expenses()
         categories = set(expense.category for expense in expenses)
         return list(categories)
-    
+        
     # Add new expense
     def add_expense(self, expense: Expense):
         self.__expenses.append(expense)
@@ -178,4 +197,3 @@ class Department:
             expense = self.__expenses[self.__iter_index]
             self.__iter_index += 1
             return expense
-

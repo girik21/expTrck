@@ -39,4 +39,12 @@ class DepartmentManager:
                 return
         print()
         print(f"{department_name} not found in departments list")
+    
+    def get_department_with_highest_budget(self) -> list[Department]:
+        sorted_departments = sorted(self.__departments, key=lambda d: d.dept_budget, reverse=True)
+        if sorted_departments:
+            return sorted_departments[0]
+        return None
+    
 
+    

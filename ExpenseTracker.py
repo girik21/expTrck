@@ -28,12 +28,16 @@ class ExpenseTracker:
         print("12. Add Department Name and Department Budget")
         print("13. Update Department Name and Department Budget")
         print("14. Delete Department Name and Department Budget")
+        print("15. Get Employee with the Highest Expense")
+        print("16. Get Department with Highest Budget")
+        print("17. Get Expense Report by Month")
 
         print("0.  Exit")
     
     #Get user input
     def get_user_choice(self) -> int:
         choice = int(input("Enter your choice: "))
+        print()
         return choice
     
     def process_command(self, choice: int) -> None:
@@ -95,7 +99,7 @@ class ExpenseTracker:
         elif choice == 6:
             print("Add expense:")
             emp_id = int(input("Enter new Employee ID: "))
-            date = input("Enter date (YYYY/MM/DD): ")
+            date = input("Enter date format(YYYY-MM-DD): ")
             amount = int(input("Enter Expense Amount: "))
             category = input("Enter Category: ")
             
@@ -167,13 +171,26 @@ class ExpenseTracker:
             print("Delete Department")
             delete = input("Enter the dept to delete: ")
             self.__departmentManager.remove_department(delete)
+        
+        elif choice == 15:
+            print("The Highest spending Employee is: ")
+            print(self.__department.get_employee_with_most_expense())
+        
+        elif choice == 16:
+            print("Highest Budget Dept is: ")
+            print(self.__departmentManager.get_department_with_highest_budget())
+        
+        elif choice == 17:
+            print("Expense Reports are: ")
+            print(self.__department.generate_expense_report_by_month())
   
         elif choice == 0:
             print("Thank you for using my app CFO!")
             return choice
         else:
             print("Invalid option selected! Select again!")
-            
+        
+        
 def main():
     app = ExpenseTracker()
     while True:
