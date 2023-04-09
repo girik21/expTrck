@@ -2,6 +2,8 @@ import sys
 sys.path.append('./')
 from components.department import Department
 from database.departmentDB import DepartmentRepository
+import matplotlib.pyplot as plt
+from typing import List
 
 class DepartmentManager:
     def __init__(self) -> None:
@@ -46,5 +48,15 @@ class DepartmentManager:
             return sorted_departments[0]
         return None
     
-
+    def generate_department_histogram(self) -> List[Department]:
+        departments: List[Department] = self.__department_db.read_department()
+        department_expenses = [department.dept_budget for department in departments]
+        num_bins = 10
+        plt.hist(department_expenses, bins=num_bins, edgecolor='black')
+        plt.xlabel('Department Budget')
+        plt.ylabel('Frequency')
+        plt.title('Department Expense Histogram')
+        plt.show()
+        return departments
     
+
