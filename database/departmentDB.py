@@ -3,7 +3,7 @@ sys.path.append('./')
 from components.department import Department
 import csv
 
-class DepartmentReposiory:
+class DepartmentRepository:
     def __init__(self, filename:str = "./csv/department.csv" ) -> None:
         self.__filename = filename
 
@@ -29,7 +29,7 @@ class DepartmentReposiory:
     
 def main():
     # Test For department Data
-    dep_db = DepartmentReposiory()
+    dep_db = DepartmentRepository()
         
     #test reading departments from repo
     departments = dep_db.read_department()

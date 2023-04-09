@@ -5,7 +5,6 @@ from components.expense import Expense
 from database.employeeDB import EmployeeRepository
 from database.expenseDB import ExpenseRepository
 
-
 class Department:
     def __init__(self, dept_name: str) -> None:
         self.__dept_name = dept_name
@@ -18,12 +17,21 @@ class Department:
     def dept_name(self) -> str:
         return self.__dept_name
     
+    def __str__(self):
+        return f"Department Name: {self.dept_name}"
+    
     def get_csv(self) -> list[str]:
         csv_str: list[str] = [
-            self.__dept_name,
+            self.__dept_name
         ]
 
         return csv_str
+    
+    def __eq__(self, __o: object) -> bool:
+        if isinstance(__o, Department):
+            return __o.__dept_name == self.__dept_name
+        else:
+            return False
     
     #Get the list of all employees
     def get_all_employees(self) -> list[Employee]:
@@ -159,3 +167,4 @@ class Department:
             expense = self.__expenses[self.__iter_index]
             self.__iter_index += 1
             return expense
+
