@@ -43,9 +43,6 @@ class ExpenseTracker:
         print("18. Employee Histogram using MatplotLib")
         print("19. Department Histogram using MatplotLib")
         print("20. Expense Histogram using MatplotLib")
-        
-        
-
         print("0.  Exit")
     
     #Get user input
