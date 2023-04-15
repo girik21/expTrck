@@ -26,7 +26,7 @@ class Department:
         return self.__dept_budget
     
     def __str__(self):
-        return f"Department-Name: {self.dept_name}\nDepartment-Budget: {self.__dept_budget}"
+        return f"Department-Name: {self.dept_name}\nDepartment-Budget: ${self.__dept_budget}"
     
     def get_csv(self) -> list[str]:
         csv_str: list[str] = [
@@ -191,7 +191,7 @@ class Department:
         # Count the total number of expenses in each category
         category_counts = Counter(expense_categories)
 
-        plt.rcParams.update({'font.size': 12, 'font.family': 'serif'})
+        plt.rcParams.update({'font.size': 8, 'font.family': 'serif'})
         plt.hist(expense_categories, bins=num_bins, edgecolor='black')
         plt.xlabel('Expense Categories')
         plt.xticks()
