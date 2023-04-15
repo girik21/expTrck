@@ -33,17 +33,27 @@ class ExpenseTracker:
         print("12. Add Department Name and Department Budget")
         print("13. Update Department Name and Department Budget")
         print("14. Delete Department Name and Department Budget")
+        print("15. Search Department")
         print()
         print("****** Report options ******")
-        print("15. Get Employee with the Highest Expense")
-        print("16. Get Department with Highest Budget")
-        print("17. Get Expense Report by Month")
+        print("16. Get Employee with the Highest Expense")
+        print("17. Get Department with Highest Budget")
+        print("18. Get Monthly Expense Report")
         print()
         print("****** Histograms ******")
-        print("18. Employee Histogram using MatplotLib")
-        print("19. Department Histogram using MatplotLib")
-        print("20. Expense Histogram using MatplotLib")
+        print("19. [Extra Feature] Employee Ranks Histogram using MatplotLib")
+        print("20. Expense Category count Histogram using MatplotLib")
+        print("21. Department Histogram using MatplotLib")
+        print()
+        print("****** Alert and Percentage ******")
+        print("22. Alert the Department limit by entering the limit")
+        print("23. Apply Reduce Percentage % to the expense category ")
+        print()
+        print("****** Extras ******")
+        print("24. Get Employees by rank")
+        print("25. Get Total Budget of the company")
         print("0.  Exit")
+
     
     #Get user input
     def get_user_choice(self) -> int:
@@ -95,20 +105,22 @@ class ExpenseTracker:
         
         elif choice == 5:
             print("Employee information to update:")
-            emp_id = int(input("Enter new Employee ID: "))
-            first_name = input("Enter new First name: ")
-            last_name = input("Enter new Last name: ")
-            department_name = input("Enter new Department Name: ")
-            rank = input("Enter new rank: ")
+            emp_id = int(input("Enter existing Employee ID: "))
+            first_name = input("Enter existing First name: ")
+            last_name = input("Enter existing Last name: ")
+            department_name = input("Enter existing Department Name: ")
+            rank = input("Enter existing rank: ")
 
             employee_update = Employee(emp_id, first_name, last_name, department_name, rank)
-            self.__department.update_employee(employee_update)
-            print("Given customer is successfully updated!")
-            print()
+            update = self.__department.update_employee(employee_update)
+            if update:
+               print("Given customer is successfully updated!")
+            else:
+               print("Employee not found")
         
         elif choice == 6:
             print("Add expense:")
-            emp_id = int(input("Enter new Employee ID: "))
+            emp_id = int(input("Enter existing Employee ID: "))
             date = input("Enter date format(YYYY-MM-DD): ")
             amount = int(input("Enter Expense Amount: "))
             category = input("Enter Category: ")
@@ -183,31 +195,72 @@ class ExpenseTracker:
             self.__departmentManager.remove_department(delete)
         
         elif choice == 15:
+            print("The department you want to search: ")
+            dept_names = input("Enter the Department name: ")
+            found_departments = self.__departmentManager.search_department(dept_names) 
+            if found_departments:
+                print("Here is the dept:")
+                for department in found_departments:
+                    print()
+                    print(department)
+                    print()
+            else:
+                print("No department with that name.")
+        
+        elif choice == 16:
             print("The Highest spending Employee is: ")
             print(self.__department.get_employee_with_most_expense())
         
-        elif choice == 16:
+        elif choice == 17:
             print("Highest Budget Dept is: ")
             print(self.__departmentManager.get_department_with_highest_budget())
         
-        elif choice == 17:
+        elif choice == 18:
             print("Expense Reports are: ")
             print(self.__department.generate_expense_report_by_month())
         
-        elif choice == 18:
+        elif choice == 19:
             print(self.__department.generate_employee_histogram())
         
-        elif choice == 19:
+        elif choice == 20:
+            print(self.__department.generate_total_employee_expense_histogram())
+        
+        elif choice == 21:
             print(self.__departmentManager.generate_department_histogram())
         
-        elif choice == 20:
-            print(self.__department.generate_expense_histogram())
-  
+        elif choice == 22:
+            print("Please enter your Desired limit that should not be crossed")
+            limit = int(input("Enter the budget_limit: $ "))
+            alerts = self.__department.give_alerts(limit)
+            if len(alerts) == 0:
+               print("No expenses exceeded the specified limit.")
+            else:
+               print("The following expenses exceeded the specified limit:")
+               for alert in alerts:
+                   print(alert)
+        
+        elif choice == 23:
+            print("Please enter your Desired percentage for the expenses")
+            percentage = int(input("Enter the percentage amount: "))
+            percentage_apply = self.__department.apply_percentage(percentage)
+            for result in percentage_apply:
+                print(result)
+        
+        elif choice == 24:
+            employees_by_rank = self.__department.get_employees_by_rank()
+            for employee_rank in employees_by_rank:
+                print(employee_rank)
+        
+        elif choice == 25:
+            print(self.__departmentManager.get_total_capital())
+            
         elif choice == 0:
             print("Thank you for using my app CFO!")
             return choice
         else:
             print("Invalid option selected! Select again!")
+        
+     
         
         
 def main():

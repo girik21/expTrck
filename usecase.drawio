@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="L-autRN_uENwIV8cupbO" name="Page-1">
-        <mxGraphModel dx="1132" dy="12" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+        <mxGraphModel dx="1301" dy="-375" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -19,26 +19,8 @@
                 <mxCell id="210" value="&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;allocate budget for department, update budget category, store budget, modify budget&lt;/font&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1054" y="1400" width="150" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="231" style="edgeStyle=none;html=1;entryX=0.039;entryY=0.669;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;endArrow=open;endFill=0;dashed=1;dashPattern=8 8;" parent="1" source="215" target="220" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="232" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;endArrow=open;endFill=0;dashed=1;dashPattern=8 8;" parent="1" source="215" target="221" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="233" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;endArrow=open;endFill=0;dashed=1;dashPattern=8 8;" parent="1" source="215" target="222" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="215" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;b style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(251, 251, 251);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color); font-size: 12px;&quot;&gt;Manage Employee Expense&lt;/font&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="1054" y="1510" width="150" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="220" value="&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;add individual employee expenses, find highest spending employee, create histogram of individual employeees&lt;/font&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="1314" y="1390" width="190" height="90" as="geometry"/>
-                </mxCell>
-                <mxCell id="221" value="&lt;b style=&quot;font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;add department expense, get monthly report, monthly expense by category, monthly report by each&lt;/font&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt; &lt;/font&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;expense&lt;/font&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="1314" y="1500" width="180" height="100" as="geometry"/>
-                </mxCell>
-                <mxCell id="222" value="&lt;b&gt;histogram of each expense, alert budget limit, find highest spending department, find highest budget department&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="1309" y="1610" width="185" height="100" as="geometry"/>
+                <mxCell id="215" value="&lt;b style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(251, 251, 251);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color); font-size: 12px;&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Manage Employee Expense&lt;/span&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color);&quot;&gt;add individual employee expenses, find highest spending employee, create histogram of individual employeees,&lt;/font&gt;&lt;/b&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color);&quot;&gt;add department expense, get monthly report, monthly expense by category, monthly report by each&lt;/font&gt;&lt;font style=&quot;border-color: var(--border-color);&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;font style=&quot;border-color: var(--border-color);&quot;&gt;expense,&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;histogram of each expense, alert budget limit, find highest spending department, find highest budget department&lt;/b&gt;&lt;/font&gt;&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;/font&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="995" y="1502" width="268" height="170" as="geometry"/>
                 </mxCell>
                 <mxCell id="224" value="Expense Tracker System" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
                     <mxGeometry x="1219" y="1110" width="100" height="40" as="geometry"/>
@@ -67,16 +49,7 @@
                         <mxPoint x="1081.000000000006" y="1325" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="234" value="Include" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-15;" vertex="1" parent="1">
-                    <mxGeometry x="1181" y="1472" width="60" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="235" value="Include" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=0;" vertex="1" parent="1">
-                    <mxGeometry x="1223" y="1522" width="60" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="240" value="include" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="1227" y="1593" width="63" height="28" as="geometry"/>
-                </mxCell>
-                <mxCell id="241" style="edgeStyle=none;html=1;dashed=1;dashPattern=8 8;endArrow=open;endFill=0;" edge="1" parent="1" source="224" target="224">
+                <mxCell id="241" style="edgeStyle=none;html=1;dashed=1;dashPattern=8 8;endArrow=open;endFill=0;" parent="1" source="224" target="224" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
