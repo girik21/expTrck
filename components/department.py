@@ -6,7 +6,7 @@ from components.expense import Expense
 from database.employeeDB import EmployeeRepository
 from database.expenseDB import ExpenseRepository
 import matplotlib.pyplot as plt
-
+from collections import Counter
 
 class Department:
     def __init__(self, dept_name: str, dept_budget: float) -> None:
@@ -122,7 +122,14 @@ class Department:
                report[expense_month] = 0
             report[expense_month] += expense.amount
 
-        return report
+        # Format report as a string for printing
+        report_str = "Expense Report by Month:\n"
+        for month, amount in report.items():
+            month_str = f"{month}:"
+            amount_str = f"${amount:,.2f}\n"
+            report_str += f"{month_str:<20} {amount_str:>10}"
+
+        return report_str
         
     def get_employee_with_most_expense(self) -> Expense:
         expenses: list[Expense] = self.__expense_db.read_expenses()
@@ -175,18 +182,25 @@ class Department:
             print(f"Expense named {expense} was updated!")
         else:
             print(f"Could find the expense!")
-    
-    def generate_expense_histogram(self) -> List[Expense]:
+        
+    def generate_total_employee_expense_histogram(self) -> None:
         expenses: List[Expense] = self.__expense_db.read_expenses()
-        expense_amounts = [expense.amount for expense in expenses]
-        num_bins = 10
-        plt.hist(expense_amounts, bins=num_bins, edgecolor='black')
-        plt.xlabel('Expense Amount')
-        plt.ylabel('Frequency')
+        expense_categories = [expense.category for expense in expenses]
+        num_bins = len(set(expense_categories))
+
+        # Count the total number of expenses in each category
+        category_counts = Counter(expense_categories)
+
+        plt.rcParams.update({'font.size': 12, 'font.family': 'serif'})
+        plt.hist(expense_categories, bins=num_bins, edgecolor='black')
+        plt.xlabel('Expense Categories')
+        plt.xticks()
+        plt.ylabel('Number of Expenses')
         plt.title('Employee Expense Histogram')
+        for i, count in enumerate(category_counts.values()):
+            plt.text(i, count + 1, str(count), ha='center', va='bottom')
         plt.show()
-        return expenses
-    
+        
     def generate_employee_histogram(self) -> List[Employee]:
         employees: List[Employee] = self.__employees_db.read_employees()
         all_depts = [employee.department_name for employee in employees]
@@ -199,7 +213,38 @@ class Department:
         plt.title('Employee Department and Rank Histogram')
         plt.show()
         return employees
-
+    
+    def give_alerts(self, limit: int) -> List[str]:
+        expenses: List[Expense] = self.__expense_db.read_expenses()
+        alert_msgs = []
+        for expense in expenses:
+            if expense.amount > limit:
+               alert_msg = f"\n[Alert]: Expense of ${expense.amount:,.2f} in category [{expense.category}] exceeds the limit of ${limit:,.1f}."
+               alert_msgs.append(alert_msg)
+        return alert_msgs
+     
+    def apply_percentage(self, percentage: int) -> List[str]:
+        expenses: List[Expense] = self.__expense_db.read_expenses()
+        change_expenses= []
+        for expense in expenses:
+            new_amount = expense.amount * (1 - percentage/100)
+            alert_msg = f"Applied change of {percentage}% to the category {expense.category} Amount {expense.amount} and new amount is {new_amount}"
+            change_expenses.append(alert_msg)
+        return change_expenses
+    
+    def get_employees_by_rank(self) -> List[str]:
+        employees: List[Employee] = self.__employees_db.read_employees()
+        ranks: dict[str, List[str]] = {}
+        for employee in employees:
+            if employee.rank not in ranks:
+               ranks[employee.rank] = []
+            ranks[employee.rank].append(employee.first_name + employee.last_name)
+        sorted_ranks = sorted(ranks.items(), key=lambda x: x[0], reverse=True)
+        result: List[str] = []
+        for rank, employees in sorted_ranks:
+            result.append(f"{rank}: {', '.join(employees)}")
+        return result
+            
     @property
     def __iter__(self):
         self.__iter_index = 0

@@ -53,10 +53,19 @@ class DepartmentManager:
         department_expenses = [department.dept_budget for department in departments]
         num_bins = 10
         plt.hist(department_expenses, bins=num_bins, edgecolor='black')
-        plt.xlabel('Department Budget')
-        plt.ylabel('Frequency')
-        plt.title('Department Expense Histogram')
+        plt.xlabel('Department Monthly Budget', fontsize=24)
+        plt.ylabel('Frequency', fontsize=14)
+        plt.title('Department Expense Histogram', fontsize=26)
         plt.show()
         return departments
     
+    def get_total_capital(self) -> float:
+        departments: List[Department] = self.__department_db.read_department()
+        total_expense = 0.0
+        for department in departments:
+            total_expense += department.dept_budget
+        return f"The Total budget of the company is ${total_expense}"
+            
+
+            
 
